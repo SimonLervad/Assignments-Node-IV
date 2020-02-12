@@ -42,7 +42,7 @@ exports.receiveData = function(req, res, data) {
         "Content-Type": "text/html; charset=utf-8"
     });
     res.write(experimental.receipt(obj));           // home made templating for native node
-    let array = [];                                                // define array
+    let array = [];                                             // define array
     fs.readFile(filename, "utf8", function(err1, info) {
         if (err1) {
             throw err1;
