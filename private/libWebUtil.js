@@ -15,7 +15,6 @@ const makeWebArrays = function (req, data) {
 
     let GET = querystring.parse(qs);
     let POST = querystring.parse(data);
-    console.log(getJSONString({ GET, POST }));
     return { GET, POST };
 }
 
@@ -28,7 +27,7 @@ const makeLogEntry = function(req) {
     let mins = now.getMinutes() < 10 ? "0" + now.getMinutes() : "" + now.getMinutes();
     let secs = now.getSeconds() < 10 ? "0" + now.getSeconds() : "" + now.getSeconds();
 
-    s += `${now.getFullYear()}-${month}-${date}`;
+    s += `${now.getFullYear()}-${month}-${date} `;
     s += "T";
     s += `${hours}:${mins}:${secs}`;
     s += " ";

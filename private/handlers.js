@@ -36,26 +36,28 @@ exports.getAndRespond = function(path, contentType, res) {
     }
 };
 exports.receiveData = function(req, res, data) {
-    console.log("you went here");
     let obj = lib.makeWebArrays(req, data);         // home made GET and POST objects
     res.writeHead(httpStatus.OK, {                  // yes, write relevant header
         "Content-Type": "text/html; charset=utf-8"
     });
-    res.write(experimental.receipt(obj));           // home made templating for native node
-    let array = [];                                             // define array
-    fs.readFile(filename, "utf8", function(err1, info) {
+    let time = lib.makeLogEntry(req);
+    let arr = [];
+    fs.readFile(filename, "utf8", function(err1, data) {
         if (err1) {
             throw err1;
         }
-        array = JSON.parse(info);                                           // new
-        array.push(obj);                                  // push obj onto array
-        let jsonstr = JSON.stringify(arr);              // stringify
-
+        if (data != "") {
+           arr = JSON.parse(data); 
+        }
+        obj.POST.submit = time;
+        arr.push(obj.POST);
+        let jsonstr = JSON.stringify(arr);
+        console.log(JSON.parse(jsonstr));
         fs.writeFile(filename, jsonstr, function(err) { // write to json file
-            if (err) {                                  // rewrite, not update
+            if (err) {
                 throw err;
             }
-            console.log("Your profile was succesfully created");
         });
     });
+    //res.write(experimental.receipt(obj));           // home made templating for native node
 }
