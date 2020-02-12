@@ -2,6 +2,12 @@
 "use strict";
 
 const fs = require("fs");
+/*
+const receipt = function(obj) {
+    alert("hello world");
+}
+*/
+
 
 const receipt = function(obj) {
     let html = `<!doctype html>

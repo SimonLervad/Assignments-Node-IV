@@ -59,5 +59,6 @@ exports.receiveData = function(req, res, data) {
             }
         });
     });
+    res.end();
     //res.write(experimental.receipt(obj));           // home made templating for native node
 }
