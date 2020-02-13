@@ -21,6 +21,20 @@ const goError = function(res) {
 exports.getAndRespond = function(path, contentType, res) {
     console.log(path);
     if (fs.existsSync(path)) {              // does file exist, sync
+        if (path === "views/messages.html") {
+            console.log("im letting u know, this is the right path to go!");
+            let arr = [];
+            fs.readFile(filename, "utf8", function(err1, data) { // read to check
+                if (err1) {
+                    throw err1;
+                }
+                if (data != "") {
+                   arr = JSON.parse(data); 
+                }
+                res.write(experimental.receipt(arr));           // home made templating for native node
+            });
+
+        }
         fs.readFile(path, function(err, data) { // read
             if (err) {                      // if read error
                 console.log("nml: " + err);           // inform server
@@ -59,6 +73,6 @@ exports.receiveData = function(req, res, data) {
             }
         });
     });
+    res.write("<a href='/'>Return to front page</a>");
     res.end();
-    //res.write(experimental.receipt(obj));           // home made templating for native node
-}
+};

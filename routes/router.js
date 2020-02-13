@@ -20,6 +20,7 @@ const routes = {                                    // register handles to route
         "/side": handlers.getAndRespond,
         "/about": handlers.getAndRespond,
         "/contact": handlers.getAndRespond,
+        "/messages": handlers.getAndRespond,
         "js": handlers.getAndRespond,
         "css": handlers.getAndRespond,
         "png": handlers.getAndRespond,
@@ -46,7 +47,7 @@ exports.route = function(req, res, body) {          // routing
         asset = "css";
         routedUrl = "public/css" + req.url;
         type = contentTypes.css;
-    } else if (req.url.indexOf(".png") !== -1) {
+    }  else if (req.url.indexOf(".png") !== -1) {
         asset = "png";
         routedUrl = "public/images" + req.url;
         type = contentTypes.png;
